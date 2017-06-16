@@ -2,6 +2,7 @@ package cn.music.test.common;
 
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@Configuration(locations="")
+@ContextConfiguration(locations="classpath:spring/spring.dao.xml")
 public class SpringJunitTest {
 
 }
