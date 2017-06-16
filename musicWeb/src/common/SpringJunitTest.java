@@ -1,4 +1,4 @@
-package cn.music.test.common;
+package common;
 
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Configuration;
