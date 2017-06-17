@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class webController {
 	@RequestMapping("/check.do")
 	public String check(Date date){
+		System.out.println();
 		return "";
 	}
 }
