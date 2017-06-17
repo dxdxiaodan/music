@@ -17,12 +17,8 @@
 	
     <!-- 时间绑定 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-<<<<<<< HEAD
-        <property name="WebBindingInitializer"></property>
-=======
         <property name="WebBindingInitializer">
             <bean class="cn.music.adapter.DateEdit"/>
         </property>
->>>>>>> 6c83d5f8f894df364629558095a119beccec6ad1
     </bean>
 </beans>
