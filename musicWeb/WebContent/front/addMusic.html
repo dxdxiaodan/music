@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/front.css">
+    <link rel="stylesheet" href="../css/addMusic.css">
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/index.js"></script>
+    <title>音乐上传</title>
+</head>
+<body >
+    <div class="head" style="">
+       <div class="container ">
+        <div class="top">
+            <div class="logo">
+                <a id="" >
+                    <img src="../images/logo.png" height="40" width="125"/>
+                </a>
+            </div>
+
+            <div class="search">
+                <input type="text" id="search_text" class="search_text" placeholder="输入歌名、歌曲或...">
+                <!--<div class="search_btn">-->
+                <a href="" id="search_btn">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </a>
+                <!--</div>-->
+            </div>
+            <div class="rnav">
+                <ul class="rnav_items">
+                    <li><a href="login.action">登&nbsp;录</a></li>
+                    <li><a href="register.action">注&nbsp;册</a></li>
+                    <li><a href="upload.action">
+                        <span class="glyphicon glyphicon-upload"></span>&nbsp;注&nbsp;册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="title">
+        <div class="container">
+            <h3 class="title_content"><span class="glyphicon glyphicon-upload "></span>上传音乐</h3>
+        </div>
+    </div>
+    <div class="up_file">
+        <div class="container">
+            <div class="file_title">
+                <p><span class="important">*</span>选择并上传歌曲</p>
+            </div>
+            <div class="file_music">
+                <div >
+                    <a href="javascript:void(0);">
+                        请选择文件
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="kind">
+        <div class="container">
+            <div class="file_title">
+                <p><span class="important">*</span>歌曲类型</p>
+            </div>
+            <div class="file_kind">
+                <ul>
+                    <li>
+                        <a>原创</a>
+                        <div class="content">
+                            上传要求：词/曲/唱/编曲/后期等必须纯原创（不可借用网络他人以上任何一项）且上传者有参与作品创作
+                        </div>
+                    </li>
+                    <li>
+                        <a>翻唱</a>
+                        <div class="content">
+                            上传要求：词/曲/唱/编曲/后期等必须纯原创（不可借用网络他人以上任何一项）且上传者有参与作品创作
+                        </div>
+                    </li>
+                    <li class="end">
+                        <a>伴奏</a>
+                        <div class="content">
+                            上传要求：词/曲/唱/编曲/后期等必须纯原创（不可借用网络他人以上任何一项）且上传者有参与作品创作
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="yc_content">
+        <form>
+            <input type="hidden" id="language" value="华语">
+            <input type="hidden" id="kind" value="古典">
+            <div class="file_desc">
+              <div class="container">
+                    <table>
+                        <tr>
+                            <th><span class="important">*</span>歌曲名称：</th>
+                            <td><input class="form-control" type="text" id="yc_name"></td>
+                        </tr>
+                        <tr>
+                            <th><span class="important">*</span>作词：</th>
+                            <td><input class="form-control" type="text" id="yc_editor"></td>
+                        </tr>
+                        <tr>
+                            <th><span class="important">*</span>作曲：</th>
+                            <td><input class="form-control" type="text" id="dd"></td>
+                        </tr>
+                        <tr>
+                            <th><span class="important">*</span>演唱：</th>
+                            <td><input class="form-control" type="text" id="yc_singer"></td>
+                        </tr>
+                        <tr>
+                            <th>编曲：</th>
+                            <td><input class="form-control" type="text" id="xx"></td>
+                        </tr>
+                        <tr>
+                            <th><span class="important">*</span>语种：</th>
+                            <td>
+                                <div>
+                                    <ul>
+                                        <li class="chick">华语</li>
+                                        <li>欧美</li>
+                                        <li>日语</li>
+                                        <li>韩语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><span class="important">*</span>曲风：</th>
+                            <td>
+                                <div>
+                                    <ul>
+                                        <li>古典</li>
+                                        <li>轻音乐</li>
+                                        <li>摇滚</li>
+                                        <li>流行</li>
+                                        <li>民谣</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+                                        <li>华语</li>
+
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+
+              </div>
+            </div>
+            <div class="file_rilc">
+                <div class="container">
+                    <table>
+                        <tr>
+                            <th><span class="important">*</span>创作灵感：</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th><span class="important">*</span>歌词：</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="button" class="submitButton" value="上传并提交审核">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
