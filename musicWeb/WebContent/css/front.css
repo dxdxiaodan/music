@@ -12,8 +12,7 @@ img { -ms-interpolation-mode: bicubic;
     background-image:linear-gradient(rgba(70, 99, 152, 0.82),rgba(75, 97, 92, 0.61));
     background-color: #0f0f0f;
     height: 80px;
-    position: fixed;
-    top:0px;
+    position: relative;
     width: 100%;
 }
 p{

@@ -4,6 +4,14 @@ h1,h2,h3,h4,h5{
 a,a:hover{
     text-decoration: none;
 }
+.head{
+    background-image:linear-gradient(rgba(70, 99, 152, 0.82),rgba(75, 97, 92, 0.61));
+    background-color: #0f0f0f;
+    height: 80px;
+    position: fixed;
+    top:0px;
+    width: 100%;
+}
 .title{
     background: #fafafa;
     height: 59px;
