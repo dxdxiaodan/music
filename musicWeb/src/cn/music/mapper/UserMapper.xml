@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.music.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.music.po.User" >
+    <id column="userId" property="userid" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="registerTime" property="registertime" jdbcType="TIMESTAMP" />
+    <result column="amountStatusid" property="amountstatusid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.music.po.UserWithBLOBs" extends="BaseResultMap" >
+    <result column="address" property="address" jdbcType="LONGVARCHAR" />
+    <result column="headPortrait" property="headportrait" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, userName, password, sex, birthday, registerTime, amountStatusid
+  </sql>
+  <sql id="Blob_Column_List" >
+    address, headPortrait
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user
+    where userId = #{userid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where userId = #{userid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.music.po.UserWithBLOBs" >
+    insert into user (userId, userName, password, 
+      sex, birthday, registerTime, 
+      amountStatusid, address, headPortrait
+      )
+    values (#{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=CHAR}, #{birthday,jdbcType=DATE}, #{registertime,jdbcType=TIMESTAMP}, 
+      #{amountstatusid,jdbcType=INTEGER}, #{address,jdbcType=LONGVARCHAR}, #{headportrait,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.music.po.UserWithBLOBs" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="registertime != null" >
+        registerTime,
+      </if>
+      <if test="amountstatusid != null" >
+        amountStatusid,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="headportrait != null" >
+        headPortrait,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="registertime != null" >
+        #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountstatusid != null" >
+        #{amountstatusid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="headportrait != null" >
+        #{headportrait,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.music.po.UserWithBLOBs" >
+    update user
+    <set >
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=CHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="registertime != null" >
+        registerTime = #{registertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amountstatusid != null" >
+        amountStatusid = #{amountstatusid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="headportrait != null" >
+        headPortrait = #{headportrait,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where userId = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.music.po.UserWithBLOBs" >
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      registerTime = #{registertime,jdbcType=TIMESTAMP},
+      amountStatusid = #{amountstatusid,jdbcType=INTEGER},
+      address = #{address,jdbcType=LONGVARCHAR},
+      headPortrait = #{headportrait,jdbcType=LONGVARCHAR}
+    where userId = #{userid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.music.po.User" >
+    update user
+    set userName = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      registerTime = #{registertime,jdbcType=TIMESTAMP},
+      amountStatusid = #{amountstatusid,jdbcType=INTEGER}
+    where userId = #{userid,jdbcType=VARCHAR}
+  </update>
+</mapper>
