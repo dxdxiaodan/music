@@ -49,7 +49,7 @@
      
      <!-- mybatis mapper代理与spring整合 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-         <property name="basePackage" value="cn.mapper"/>
+         <property name="basePackage" value="cn.music.mapper"/>
          <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
      </bean> 
 

@@ -155,4 +155,10 @@
       amountStatusid = #{amountstatusid,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=VARCHAR}
   </update>
+  <select id="selectAll" resultType="cn.music.po.User">
+      select * from user
+  </select>
+  <insert id="insertByUser">
+     
+  </insert>
 </mapper>

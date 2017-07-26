@@ -2,6 +2,9 @@ package cn.music.po;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+@Component(value = "admin" )
 public class Admin {
     private String staffid;
 
