@@ -9,8 +9,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd "> 
 		<context:annotation-config></context:annotation-config>
 		<context:component-scan base-package="cn.music.*">
-<!-- 		    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
- -->		</context:component-scan>
+ 		    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+ 		</context:component-scan>
 		<!-- <bean id="language" class="cn.music.po.Language" /> -->
 		
  		<!-- 为了使用Autowired标签，我们必须在这里配置一个bean的后置处理器  -->

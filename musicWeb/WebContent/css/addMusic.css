@@ -4,14 +4,7 @@ h1,h2,h3,h4,h5{
 a,a:hover{
     text-decoration: none;
 }
-.head{
-    background-image:linear-gradient(rgba(70, 99, 152, 0.82),rgba(75, 97, 92, 0.61));
-    background-color: #0f0f0f;
-    height: 80px;
-    position: fixed;
-    top:0px;
-    width: 100%;
-}
+
 .title{
     background: #fafafa;
     height: 59px;
@@ -39,12 +32,27 @@ a,a:hover{
     border: rgba(46,164,249,0.33) 1px solid;
     height: 150px;
 }
-.up_file .file_music a,.up_file .file_music a:hover{
-    text-decoration: none;
-    height: 50px;
+.up_file .file_music .choose_file{
+    height: 70px;
+    line-height: 50px;
     background-color: #31b0d5;
-    width: 100px;
+    width: 200px;
+    margin: 40px auto;
 }
+.up_file .file_music .choose_file input{
+    height: 70px;
+    /*line-height: 50px;*/
+    background-color: #31b0d5;
+    width: 200px;
+    /*font-size: 100px;
+    opacity: 0;*/
+}
+/*.up_file .file_music a,.up_file .file_music a:hover{*/
+    /*text-decoration: none;*/
+    /*height: 50px;*/
+    /*background-color: #31b0d5;*/
+    /*width: 100px;*/
+/*}*/
 .kind{
     overflow: hidden;
     zoom: 1;

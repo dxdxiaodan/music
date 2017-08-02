@@ -5,7 +5,7 @@
     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../css/front.css">
+    <link rel="stylesheet" href="../css/head-fix.css">
     <link rel="stylesheet" href="../css/addMusic.css">
     <script src="../js/jquery-3.2.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
@@ -46,22 +46,24 @@
             <h3 class="title_content"><span class="glyphicon glyphicon-upload "></span>上传音乐</h3>
         </div>
     </div>
-    <div class="up_file">
+    <form enctype="multipart/form-data" action="../uploadMusic.do" method="post">
+        <input type="hidden" id="categoryid" value="0">
+        <input type="hidden" id="styleid" value="0">
+        <input type="hidden" id="languageid" value="0">
+        <div class="up_file">
         <div class="container">
             <div class="file_title">
                 <p><span class="important">*</span>选择并上传歌曲</p>
             </div>
             <div class="file_music">
-                <div >
-                    <a href="javascript:void(0);">
-                        请选择文件
-                    </a>
+                <div class="choose_file">
+                    <input type="file" class="form-control" name="music_file" id="music_file" />
                 </div>
             </div>
         </div>
 
     </div>
-    <div class="kind">
+        <div class="kind">
         <div class="container">
             <div class="file_title">
                 <p><span class="important">*</span>歌曲类型</p>
@@ -90,8 +92,8 @@
             </div>
         </div>
     </div>
-    <div class="yc_content">
-        <form>
+        <div class="yc_content">
+
             <input type="hidden" id="language" value="华语">
             <input type="hidden" id="kind" value="古典">
             <div class="file_desc">
@@ -180,13 +182,14 @@
                         <tr>
                             <th></th>
                             <td>
-                                <input type="button" class="submitButton" value="上传并提交审核">
+                                <input type="submit" class="submitButton" value="上传并提交审核">
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-        </form>
+
     </div>
+    </form>
 </body>
 </html>
