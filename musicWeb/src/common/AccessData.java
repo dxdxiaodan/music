@@ -7,6 +7,6 @@ package common;
 public class AccessData {
 	public static final String port = "8080";
 	
-	public static final String UPLOAD_URL="http://localhost:8080/musicWeb/temporaryMusicSave/"; 
+	public static final String UPLOAD_URL="http://localhost:8080/musicWeb/upload/"; 
 	
 }

@@ -1,7 +1,7 @@
 package cn.music.controller.front;
 /**
  * @author:dxd
- * 
+ * annotation:后台获取数据显示到前端页面上
  */
 import javax.servlet.http.HttpServletResponse;
 
