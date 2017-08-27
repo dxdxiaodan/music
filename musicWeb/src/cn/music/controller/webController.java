@@ -21,4 +21,15 @@ public class webController {
 		System.out.println("user:"+user.getPassword());
 		return "a";
 	}
+	
+	
+	/**
+	 * 跳转到 index.html
+	 */
+	@RequestMapping(value="toindex.do")
+	public String toIndex(){
+		
+		return "index";
+	}
+	
 }

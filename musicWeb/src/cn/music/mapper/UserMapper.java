@@ -1,13 +1,19 @@
 package cn.music.mapper;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+
+import org.apache.ibatis.annotations.Param;
 
 import cn.music.po.User;
 import cn.music.po.UserWithBLOBs;
 
-
 public interface UserMapper {
+	/*
+	 * 登录
+	 */
+//    User findUserByUsernameAndPassword(String username,String password);
+    User findUserByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
+
+	
     int deleteByPrimaryKey(String userid);
 
     int insert(UserWithBLOBs record);

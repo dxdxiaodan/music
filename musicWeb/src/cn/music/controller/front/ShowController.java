@@ -30,5 +30,4 @@ public class ShowController {
 		String toJson = gson.toJson(style);
 		ResponseUtils.renderJson(response, toJson);
 	}
-
 }
