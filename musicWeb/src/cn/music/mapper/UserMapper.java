@@ -7,13 +7,16 @@ import cn.music.po.User;
 import cn.music.po.UserWithBLOBs;
 
 public interface UserMapper {
-	/*
+	/**
 	 * 登录
+	 * @param userid
+	 * @param password
+	 * @return
 	 */
-//    User findUserByUsernameAndPassword(String username,String password);
-    User findUserByUsernameAndPassword(@Param("username") String username,@Param("password") String password);
+    User findUserByUseridAndPassword(@Param("userid") String userid,@Param("password") String password);
 
-	
+    Integer insertWithUseridandPassword(@Param("userid") String userid, @Param("password")String password);
+  
     int deleteByPrimaryKey(String userid);
 
     int insert(UserWithBLOBs record);
@@ -27,6 +30,5 @@ public interface UserMapper {
     int updateByPrimaryKeyWithBLOBs(UserWithBLOBs record);
 
     int updateByPrimaryKey(User record);
-    User selectAll();
-    int insert(User user);
+
 }

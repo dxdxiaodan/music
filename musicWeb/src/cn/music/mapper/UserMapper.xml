@@ -21,10 +21,16 @@
     address, headPortrait
   </sql>
   
-  <!-- 用户登录  findUserByUsernameAndPassword-->
-  <select id="findUserByUsernameAndPassword" parameterType="String" resultType="User">
-  	select * from user where username = #{username} and password = #{password}
+  <!-- 用户登录  findUserByUseridAndPassword-->
+  <select id="findUserByUseridAndPassword" parameterType="String" resultType="User">
+  	select * from user where userid = #{userid} and password = #{password}
   </select>
+  
+  <!-- 用户注册 -->
+  <insert id="insertWithUseridandPassword" parameterType="String">
+  	insert into user (userid,password) values (#{userid},#{password})
+  </insert> 
+  
   
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
     select 
@@ -161,10 +167,4 @@
       amountStatusid = #{amountstatusid,jdbcType=INTEGER}
     where userId = #{userid,jdbcType=VARCHAR}
   </update>
-  <select id="selectAll" resultType="cn.music.po.User">
-      select * from user
-  </select>
-  <insert id="insertByUser">
-     
-  </insert>
 </mapper>
