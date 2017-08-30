@@ -33,8 +33,6 @@ public class UserController {
     @RequestMapping(value="toTest.do")
     public String Test(){
     	return "/msg.jsp";
-//    	return "redirct:/toLogin.do";
-//    	return "forword:/toLogin.do";
     }
     
     /**
