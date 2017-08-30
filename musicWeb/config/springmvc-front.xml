@@ -14,8 +14,8 @@
 <!--     <mvc:default-servlet-handler /> 
  -->    <!-- jsp视图解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-	    <property name="prefix" value="/WEB-INF/front_page/"/>
-	    <property name="suffix" value=".jsp"/>
+	    <property name="prefix" value="/WEB-INF/front/"/>
+	    <property name="suffix" value=""/>
 	</bean>
 	
     <!-- 时间绑定 -->
