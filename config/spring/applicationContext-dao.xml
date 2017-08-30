@@ -1,0 +1,56 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+	 http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd 
+	 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+	 http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd 
+	 http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+        
+     <!--  <context:component-scan base-package="cn"/>  -->
+      
+      
+     <!-- 加载配置文件 -->
+     <!-- <context:property-placeholder location="classpath:properties/db.properties"/> -->
+      <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="Locations">
+            <list>
+                <value>
+                    classpath:properties/db.properties
+                </value>
+            </list>
+        </property>
+       </bean>
+  <!--    
+  	   配置数据源c3p0-->
+     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driver}"></property>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+				<!--连接池中保留的最小连接数。-->
+		<property name="minPoolSize" value="10" />
+		<!--连接池中保留的最大连接数。Default: 15 -->
+		<property name="maxPoolSize" value="100" />
+		<!--最大空闲时间,1800秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
+		<property name="maxIdleTime" value="1800" />
+		<!-- <property name="maxActive" value="10"/> -->
+		<!-- <property name="maxIdle" value="5"/>   -->                 
+     </bean> 
+				     
+	<!-- 配置mybatis sqlSessionFactory  -->
+     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+         <!-- 配置mybatis 的配置文件 -->
+         <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"></property>
+         <!-- 配置mybatis 数据源路径 include mapper.xml mappinger.java -->
+         <property name="dataSource" ref="dataSource"></property>  
+     </bean> 
+     
+     <!-- mybatis mapper代理与spring整合 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+         <property name="basePackage" value="cn.music.mapper"/>
+         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+     </bean> 
+
+</beans>
