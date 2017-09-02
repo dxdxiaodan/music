@@ -1,119 +1,162 @@
 /**
  * Created by lhj on 2017/7/28.
  */
-window.onload=function(){
-	checkemail();
-	checkpassword();
-	rcheckpassword();
-}
-
+//路径
+var pathName = window.location.pathname.substring(1);  
+var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));  
+var basePath = window.location.protocol + '//' + window.location.host + '/' + webName + '/';
 /*切换到邮箱注册*/
 function registByEmail(){
-	var pathName = window.location.pathname.substring(1);  
-    var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));  
-    var basePath = window.location.protocol + '//' + window.location.host + '/' + webName + '/';
 	$("#updateform").attr("action",basePath+"registerByEmail.do");
-    document.getElementById("phone").style.display="none";
-    document.getElementById("phonets").style.display="none";
-    document.getElementById("email").style.display="";
-    document.getElementById("emailts").style.display="";
-    /*切换时清除密码*/
-    document.getElementById("password").value = "";
-    document.getElementById("rpassword").value = "";
-    /*切换时填入手机号码，避免return false*/
-    var phone = document.getElementById("phone").value = "13426923030";
-    checkphone("");
-    /*切换时清除邮箱号码*/
-    var email = document.getElementById("email").value = "";
-    checkemail("");
     /*设置切换按钮的样式*/
     $("button#registByEmailId").css({"border-top-width":"3px","border-top-color":"rgba(68,210,193,0.77)","font-weight":"700"});
     $("button#registByPhoneId").css({"border-top-width":"1px","border-top-color":"#f5f5f5","font-weight":"100"});
+    $("#emailForm").css("display","");
+    $("#phoneForm").css("display","none");
 }
 /*切换到手机注册*/
 function registByPhone(){
-	var pathName = window.location.pathname.substring(1);  
-    var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));  
-    var basePath = window.location.protocol + '//' + window.location.host + '/' + webName + '/';
 	$("#updateform").attr("action",basePath+"registerByPhone.do");
-    document.getElementById("phone").style.display="";
-    /* document.getElementById("loginByEmailId").style.display="";*/
-    document.getElementById("phonets").style.display="";
-    document.getElementById("email").style.display="none";
-    /* document.getElementById("loginByPhoneId").style.display="none";*/
-    document.getElementById("emailts").style.display="none";
-    /*切换时清除密码*/
-    document.getElementById("password").value = "";
-    document.getElementById("rpassword").value = "";
-    /*切换时清除手机号码*/
-    document.getElementById("phone").value = "";
-    checkphone("");
-    /*切换时填入邮箱号码，避免return false*/
-    document.getElementById("email").value = "aaa@qq.com";
-    checkemail("");
     /*设置切换按钮的样式*/
     $("button#registByEmailId").css({"border-top-width":"1px","border-top-color":"#f5f5f5","font-weight":"100"});
     $("button#registByPhoneId").css({"border-top-width":"3px","border-top-color":"rgba(68,210,193,0.77)","font-weight":"700"});
-}
-function checkphone() {
-    var phone = document.getElementById("phone").value;
-    var ts = document.getElementById("phonets");
-    if(!(/^1[34578]\d{9}$/.test(phone))){
-        ts.innerHTML="请输入正确的手机号码!";
-        ts.style.color="red";
-        return false;
-    }
-    ts.innerHTML ='手机号码可以使用!';
-    ts.style.color='green';
-    return true;
-}
-function checkemail() {
-    var email = document.getElementById("email").value;
-    var ets = document.getElementById("emailts");
-    if(!isEmail(email)){
-        ets.innerHTML ="请填入正确的邮箱!";
-        ets.style.color="red";
-        return false;
-    }
-    ets.innerHTML ="邮箱可以使用!";
-    ets.style.color="green";
-    return true;
-}
-function isEmail(str){
-    var reg = /[a-z0-9-]{1,30}@[a-z0-9-]{1,65}.[a-z]{3}/;
-    return reg.test(str);
-}
-function checkpassword(){
-    var password = $("#password").val();
-
-    var pts = document.getElementById("passwordts");
-
-    if(password.length<5 || password.length>10)
-    {
-        pts.innerHTML ="密码长度须在5-10之间!";
-        pts.style.color="red";
-        return false;
-    }
-    pts.innerHTML ="密码长度在范围内!";
-    pts.style.color="green";
-    return true;
+	$("#emailForm").css("display","none");
+   	$("#phoneForm").css("display","");
 }
 
-function rcheckpassword(){
-    var password = $("#password").val();
-    var rpassword = $("#rpassword").val();
-    var prts =  document.getElementById("passwordrts");
-    if (password != rpassword) {
-        prts.innerHTML="两次密码输入不一致!";
-        prts.style.color="red";
-        return false;
-    }
-    if(rpassword.length == 0){
-        prts.innerHTML="请输入密码!";
-        prts.style.color="red";
-        return false;
-    }
-    prts.innerHTML ="输入一致!";
-    prts.style.color="green";
-    return true;
-}
+$(function(){
+    // 手机号码验证  
+    jQuery.validator.addMethod("isMobile", function(value, element) {  
+        var length = value.length;  
+        var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;  
+        return this.optional(element) || (length == 11 && mobile.test(value));  
+    }, "请正确填写您的手机号码");  
+  	
+  	//alert("QAQ");
+  	//邮箱注册验证
+    $("#emailForm").validate({
+       	rules:{
+       		email:{
+       			required:true,
+       			email:true,
+       			//ajax验证邮箱是否已经注册过
+       			remote : {
+				    url : basePath+"emailCheck.do",
+				    type : "POST",
+				    cache:false,
+				    dataType : "json",
+				    data : {
+				    	email: function() {
+			        		return $("#email").val();
+					    }
+					}
+				}
+       		},
+       		password:{
+       			required:true,
+       			rangelength:[5,10]
+       		},
+       		rpassword:{
+       			required:true,
+       			rangelength:[5,10],
+       			equalTo:"#password"
+       		}
+       	},
+     	messages:{
+       		email:{
+       			required:"邮箱不能为空",
+       			email:"请输入正确的邮箱",
+       			remote: "该邮箱已经注册过"
+       		},
+       		password:{
+       			required:"密码不能为空",
+       			rangelength:"密码长度为5-10"
+       		},
+       		rpassword:{
+       			required:"请再次输入密码",
+       			rangelength:"密码长度为5-10",
+       			equalTo:"两次输入的密码不一致"
+       		}
+       	},
+//     	errorElement: "label", //用来创建错误提示信息标签
+//		success: function(label) { //验证成功后的执行的回调函数
+//			//label指向上面那个错误提示信息标签label
+//			label.text(" ") //清空错误提示消息
+//			.addClass("success"); //加上自定义的success类
+//		}
+
+    });
+    
+    /*
+    rules : {
+	    "stu.name": {
+		    required : true,
+		    stringCheck : true,
+		    byteRangeLength : [ 3, 15 ],
+			remote : {
+			    url : "student_isExistName.action",
+			    type : "get",
+			    cache:false,
+			    dataType : "json",
+			    data : {
+			    	name: function() {
+		        		return $("#name").val();
+				    }
+				}
+			}
+	    },
+    },
+      //设置错误信息
+  	messages : {
+	    "stu.name" : {
+		    	required : "请填写用户名",
+		    	stringCheck : "用户名只能包括中文字、英文字母、数字和下划线",
+		    	byteRangeLength : "用户名必须在3-15个字符之间(一个中文字算2个字符)",
+		    	remote: "该姓名已经存在"
+		    },
+	  	},
+	  	errorPlacement : function(error, element) {
+	   		var a = element.attr("Name").split('.');
+	  		$('#'+a[1]+'span').html(error)
+	 	},
+	    success : function(label) {
+	    	label.html("&nbsp;").addClass("ok");
+	    }
+    });
+    
+    */
+  	//手机注册验证
+    $("#phoneForm").validate({
+       rules:{
+       		phone:{
+       			required:true,
+				isMobile : true 
+       		},
+       		password:{
+       			required:true,
+       			rangelength:[5,10]
+       		},
+       		rpassword:{
+       			required:true,
+       			rangelength:[5,10],
+       			equalTo:"#password"
+       		}
+       },
+       messages:{
+       		phone:{
+       			required:"手机号码不能为空",
+				isMobile : "请输入正确的手机号码"
+       		},
+       		password:{
+       			required:"密码不能为空",
+       			rangelength:"密码长度为5-10"
+       		},
+       		rpassword:{
+       			required:"请再次输入密码",
+       			rangelength:"密码长度为5-10",
+       			equalTo:"两次输入的密码不一致"
+       		}
+       }
+    });
+});
+

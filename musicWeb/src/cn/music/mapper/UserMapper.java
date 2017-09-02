@@ -15,6 +15,12 @@ public interface UserMapper {
 	 */
     User findUserByUseridAndPassword(@Param("userid") String userid,@Param("password") String password);
 
+    /**
+     * 注册
+     * @param userid
+     * @param password
+     * @return
+     */
     Integer insertWithUseridandPassword(@Param("userid") String userid, @Param("password")String password);
   
     int deleteByPrimaryKey(String userid);

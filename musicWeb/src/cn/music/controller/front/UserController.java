@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cn.music.po.User;
+import cn.music.po.UserWithBLOBs;
 import cn.music.service.UserService;
 
 /**
@@ -62,6 +65,27 @@ public class UserController {
   	}
   	
   	/**
+  	 * 检验邮箱是否已经注册过
+  	 * @return
+  	 */
+  	@RequestMapping("/emailCheck.do")
+  	public String emailCheck(String email){
+  		System.out.println(email);
+  		//调用Service 方法进行检验
+  		UserWithBLOBs hasRegist = userService.findUserByid(email);
+  		if(null != hasRegist){
+  			System.out.println("用户名已存在=====================");
+  			//
+  			//有问题。。。。。。。。。。。。。。。。。
+  			//
+  			//
+  			return "fail";
+  		}else {
+			return "success";
+		}
+  	}
+  	
+  	/**
   	 * 邮箱注册
   	 * @param userid
   	 * @param password
@@ -73,14 +97,18 @@ public class UserController {
   		try {
 			//调用service 方法注册
 			//返回用户id
-			userService.register(userid,password);
+			Integer register = userService.register(userid,password);
 			
 			//邮箱激活。。。。
 			//若激活成功
 			//改变该注册用户的激活状态
 
-			//注册成功
-			model.addAttribute("msg", "注册成功，正在跳转到登录页面");
+			if(null!=register && register>0){
+				//注册成功
+				model.addAttribute("msg", "注册成功，正在跳转到登录页面");
+			}else {
+				model.addAttribute("msg", "注册失败");
+			}
 		} catch (Exception e) {
 			model.addAttribute("msg", "注册失败");
 			e.printStackTrace();

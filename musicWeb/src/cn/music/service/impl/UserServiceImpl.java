@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService{
 //		return null;
 	}
 
+	@Override
+	public UserWithBLOBs findUserByid(String userid) {
+		return userMapper.selectByPrimaryKey(userid);
+	}
+
 }

@@ -1,6 +1,7 @@
 package cn.music.service;
 
 import cn.music.po.User;
+import cn.music.po.UserWithBLOBs;
 
 /**
  * @author lhj
@@ -18,6 +19,12 @@ public interface UserService {
      * @return
      */
 	Integer register(String userid, String password);
+
+	/**
+	 * 检验用户id 是否已被注册
+	 * @return
+	 */
+	UserWithBLOBs findUserByid(String userid);
 	
 	
 	
