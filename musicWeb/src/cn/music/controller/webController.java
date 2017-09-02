@@ -31,5 +31,9 @@ public class webController {
 		
 		return "index";
 	}
-	
+	@RequestMapping(value="addMusic.do")
+	public String toAddMusic(){
+		
+		return "addMusic.html";
+	}
 }
