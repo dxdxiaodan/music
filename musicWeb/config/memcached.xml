@@ -39,4 +39,12 @@
                </list>
            </property>
        </bean>
+       
+       <bean id="memcachedAopTest" class="common.aop.MemcachedAopTest"></bean>
+       <!-- memcached aop配置 -->
+       <aop:config>
+           <aop:aspect ref="memcachedAopTest">
+               <aop:around method="doAround" pointcut="execution(* cn.music.service.UserService.login(..))"/>
+           </aop:aspect>
+       </aop:config> 
 </beans>
