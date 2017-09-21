@@ -156,7 +156,6 @@ public class UserController {
     		@RequestParam(value="email") String userid,String password,
     		HttpSession session,HttpServletRequest request){
     	//调用service 方法登录  
-    	System.out.println("");
     	User user=userService.login(userid,password);
     	if(null != user){
     		//登录成功，将user对象设置到HttpSession作用范围域中
